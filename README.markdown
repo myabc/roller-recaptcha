@@ -14,10 +14,9 @@ The source code to this plugin is released under an **Apache 2.0 License**.
 
 > Copyright 2008 Alex Coles.
 
-A copy of the License may be found in the APACHE-LICENSE-2.0 file.
+A copy of the License may be found in the accompanying APACHE-LICENSE-2.0 file.
 
-
-Additionally, this plugin bundles [ReCaptcha Java Library][http://tanesha.net/projects/recaptcha4j/],
+This plugin bundles the [ReCaptcha Java Library](http://tanesha.net/projects/recaptcha4j/),
 from Tanesha Networks.
 
 Installation
@@ -25,15 +24,18 @@ Installation
 
 ### Install files
 
-You can use the installer script provided to perform step 1 for you:
+You can use the installer script provided to perform the file installation for you:
     `ROLLER_INSTALL_DIR=/usr/local/tomcat/webapps/roller ./install.sh`
 
-1.  Copy the following libraries to your `ROLLER_INSTALL_DIR/WEB-INF/lib`:
-    *  `roller-recaptcha.jar`: _this plugin_
+Or, if you prefer a manual installation, copy the following libraries to your
+`ROLLER_INSTALL_DIR/WEB-INF/lib`: 
+
+* `recaptcha4j-0.0.7.jar`: _the ReCaptcha Java Library_
+* `roller-recaptcha.jar`: _this plugin_
 
 ### Configuration
 
-2.  Edit your `roller-custom.properties` with your favourite editor. If you
+1.  Edit your `roller-custom.properties` with your favourite editor. If you
     installed Roller to Tomcat for example, your Roller configuration will
     most likely be found in `$CATALINA_HOME/common/classes/roller-custom.properties`.
 
@@ -43,9 +45,13 @@ You can use the installer script provided to perform step 1 for you:
     `comment.authenticator.recaptcha.key_public=<get one at recaptcha.com>`
     `comment.authenticator.recaptcha.key_private=<get one at recaptcha.com>`
 
-    and add the RecaptchaCommentAuthenticator to the list of comment authenticators.
+    and make the ReCaptchaCommentAuthenticator your comment authenticator:
 
-3.  Once you're done, restart your Roller web application.
+    `comment.authenticator.classname=\`
+    `com.ikonoklastik.roller.ui.plugins.comments.recaptcha.ReCaptchaCommentAuthenticator`
+
+2.  Once you're done, restart your Roller web application. Ensure that comments
+    are enabled in your site-wide settings.
 
 ### Building the Source
 
